@@ -2,7 +2,7 @@ from django.db import models
 import secrets
 from django.utils import timezone
 
-# Create your models here.
+
 
 
 class User(models.Model):
