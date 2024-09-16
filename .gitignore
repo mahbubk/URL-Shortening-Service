@@ -24,6 +24,7 @@ media
 # C extensions
 *.so
 
+
 # Distribution / packaging
 .Python
 build/
@@ -127,7 +128,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-users_app/migrations/
+url_shortening_app/migrations/
 tenants/migrations/
 staticfiles/
 
