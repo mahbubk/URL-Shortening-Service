@@ -1,14 +1,15 @@
-
 {% extends 'base.html' %}
-
-{% load custom_filters %}
 
 {% block content %}
 
     <p>
         Original URL: <a href="{{ short_url.original_url }}">{{ short_url.original_url }}</a><br>
-        Shortened URL: <a href="{{ request|build_absolute_uri:short_url.short_code }}">
-        {{ request|build_absolute_uri:short_url.short_code }}</a><br>
+
+        Shortened URL:
+        <a href="http://{{ request.get_host }}/{{ short_url.short_code }}">
+            http://{{ request.get_host }}/{{ short_url.short_code }}
+        </a><br>
+
         <br>
         <button><a href="{% url 'index' %}">Shorten another URL</a></button>
     </p>

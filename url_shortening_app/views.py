@@ -87,7 +87,6 @@ def user_logout(request):
     return redirect('index')
 
 
-
 def get_current_user(request):
     user_id = request.session.get('user_id')
     if user_id:
@@ -97,6 +96,7 @@ def get_current_user(request):
             return None
     return None
 
+
 @log_required
 def user_links(request):
     user = get_current_user(request)
@@ -104,6 +104,24 @@ def user_links(request):
         return redirect('index')
     links = ShortenedURL.objects.filter(user=user)
     return render(request, 'user_links.html', {'links': links})
+
+
+# def get_current_user(request):
+#     user_id = request.session.get('user_id')
+#     if user_id:
+#         try:
+#             return User.objects.get(id=user_id)
+#         except User.DoesNotExist:
+#             return None
+#     return None
+#
+# @log_required
+# def user_links(request):
+#     user = get_current_user(request)
+#     if not user:
+#         return redirect('index')
+#     links = ShortenedURL.objects.filter(user=user)
+#     return render(request, 'user_links.html', {'links': links})
 
 
 def redirect_url(request, short_code):
@@ -116,6 +134,7 @@ def redirect_url(request, short_code):
         return redirect(url.original_url)
     except ShortenedURL.DoesNotExist:
         return render(request, '404.html')
+
 
 
 @log_required
@@ -135,28 +154,10 @@ def index(request):
             if user:
                 shortened_url.user = user
             shortened_url.save()
-            return render(request, 'shortened_url.html', {'short_url': shortened_url, 'request': request})
+            return render(request, 'shortend_url.html', {'short_url': shortened_url, 'request': request})
 
         else :
             print(form.errors)
     else:
         form = ShortenURLForm()
         return render(request, 'index.html', {'form': form, 'user': user})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

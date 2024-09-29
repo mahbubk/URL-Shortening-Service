@@ -1,25 +1,25 @@
 {% extends 'base.html' %}
 
-{% load custom_filters %}
-
 {% block content %}
     <h1>Your Links</h1>
 
     <ul>
         {% for link in links %}
             <li>
-                Original URL: {{ link.original_url }} <br>
-                Shortened URL: <a href="{{ request|build_absolute_uri:link.short_code }}">
-                {{ request|build_absolute_uri:link.short_code }}</a> <br>
+                Original URL: <a href="{{ link.original_url }}">{{ link.original_url }}</a><br>
+                Shortened URL:
+                <a href="http://{{ request.get_host }}/{{ link.short_code }}">
+                    http://{{ request.get_host }}/{{ link.short_code }}
+                </a><br>
                 Clicks: {{ link.clicks }} <br>
-                {% if link.expiration_date %}
-                    Expiration Date: {{ link.expiration_date }}
+                {% if link.expires_at %}
+                    Expiration Date: {{ link.expires_at|date:"M. d, Y, g:i a" }}
                 {% endif %}
             </li>
         {% endfor %}
     </ul>
 
-
     <button><a href="{% url 'index' %}">Shorten another URL</a></button>
 
 {% endblock %}
+

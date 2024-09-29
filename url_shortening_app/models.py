@@ -49,5 +49,8 @@ class ShortenedURL(models.Model):
 
         super().save(*args, **kwargs)
 
+    def is_expired(self):
+        return self.expires_at and self.expires_at < timezone.now()
+
     def __str__(self):
         return self.original_url

@@ -7,6 +7,6 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('login/', user_login, name='login'),
     path('logout/', user_logout, name='logout'),
-    path('user/links', user_links, name='user_links'),
+    path('user/links/', user_links, name='user_links'),
     path('<str:short_code>/', redirect_url, name='redirect_original'),
 ]
